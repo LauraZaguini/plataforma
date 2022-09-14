@@ -6,6 +6,7 @@
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":1,},
     {"id":{"name":"obj_plat","path":"objects/obj_plat/obj_plat.yy",},"order":1,},
     {"id":{"name":"spr_plat","path":"sprites/spr_plat/spr_plat.yy",},"order":0,},
+    {"id":{"name":"obj_player_vest","path":"objects/obj_player_vest/obj_player_vest.yy",},"order":2,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
