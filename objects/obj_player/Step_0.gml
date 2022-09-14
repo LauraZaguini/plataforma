@@ -2,6 +2,8 @@
 
 //Checando se estou no chão
 chao = place_meeting(x, y + 1, obj_plat);
+parede_dir = place_meeting(x + 1, y, obj_plat);
+parede_esq = place_meeting(x - 1, y, obj_plat);
 
 //Configurando o timer do pulo
 if(chao){
@@ -11,6 +13,11 @@ if(chao){
 	if(timer_pulo > 0){
 		timer_pulo--;
 	}
+}
+if(parede_dir || parede_esq){
+	timer_parede = limite_parede;	
+}else {
+	if(timer_parede > 0) timer_parede--;
 }
 
 //Controles
@@ -80,8 +87,31 @@ switch(estado){
 		//velh = (right - left) * max_velh;
 		velh = lerp(velh, avanco_h, acel);
 		
-		//Aplicando gravidade
-		if(!chao) velv += grav;
+		//Aplicando gravidade e parede
+		if(!chao && (parede_dir || parede_esq)){
+			//Não estou no chão, mas estou tocando na parede
+			if(velv > 0){//Estou na parede e estou caindo
+				velv = lerp(velv, deslize, acel);
+			}else {
+				//Estou subindo
+				velv += grav;
+			}
+			
+			//Pulando pelas paredes
+			if(parede_dir && jump){
+				velv  = -max_velv;
+				velh = -max_velh;
+				xscale = .5;
+				yscale = 1.5;
+			}else if(parede_esq && jump){
+				velv = -max_velv;
+				velh = max_velh;
+				xscale = .5;
+				yscale = 1.5;
+			}
+		}else if(!chao) {
+			velv += grav;	
+		}
 		
 		//Se o usuário apertar o botão de pulo "C", o velv = velocidade vertical, irá diminuir
 		//No caso aumentar para cima com base do max_velv = maxima velocidade vertical
