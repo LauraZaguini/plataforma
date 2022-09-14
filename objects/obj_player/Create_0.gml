@@ -40,6 +40,11 @@ ver						= 1;
 //Controlando cor
 sat						= 255;
 
+//Criando a camera
+if(!instance_exists(obj_camera)){
+	instance_create_layer(0, 0, "Camera", obj_camera);	
+}
+
 //State machine
 enum state{
 	parado,

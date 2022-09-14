@@ -110,7 +110,7 @@ switch(estado){
 				//Criando poeira
 				for(var i = 0; i < irandom_range(4, 10); i++){
 					var xx = random_range(x - sprite_width / 2, x + sprite_width / 2);
-					instance_create_depth(xx, y, depth - 1000, obj_vel);
+					instance_create_layer(xx, y, "Particulas", obj_vel);
 				}
 			}
 		}
@@ -128,7 +128,7 @@ switch(estado){
 						var	onde = parede_dir - parede_esq;
 						var xx = x + onde * sprite_width / 2;
 						var yy = y + random_range(- sprite_height, 0);
-						instance_create_depth(xx, yy, depth - 1000, obj_vel);
+						instance_create_layer(xx, yy, "Particulas", obj_vel);
 					}
 				}
 			}else {
@@ -149,7 +149,7 @@ switch(estado){
 					for(var i = 0; i < irandom_range(4, 10); i++){
 						var xx = x + sprite_width / 2;
 						var yy = y + random_range(- sprite_height, 0);
-						instance_create_depth(xx, yy, depth - 1000, obj_vel);
+						instance_create_layer(xx, yy, "Particulas", obj_vel);
 					}
 				}
 			}else if(ultima_parede && jump){
@@ -164,7 +164,7 @@ switch(estado){
 					for(var i = 0; i < irandom_range(4, 10); i++){
 						var xx = x - sprite_width / 2;
 						var yy = y + random_range(- sprite_height, 0);
-						instance_create_depth(xx, yy, depth - 1000, obj_vel);
+						instance_create_layer(xx, yy, "Particulas", obj_vel);
 					}
 				}
 			}
@@ -182,7 +182,7 @@ switch(estado){
 			//Criando poeira
 			for(var i = 0; i < irandom_range(4, 10); i++){
 				var xx = random_range(x - sprite_width, x + sprite_width / 2);
-				instance_create_depth(xx, y, depth - 1000, obj_vel);
+				instance_create_layer(xx, y, "Particulas", obj_vel);
 			}
 		}
 		
@@ -229,7 +229,7 @@ switch(estado){
 	case state.dash:{
 		dura--;
 		
-		//carga = 0;
+		screenshake(.95);
 		
 		velh = lengthdir_x(len, dir);
 		velv = lengthdir_y(len, dir);

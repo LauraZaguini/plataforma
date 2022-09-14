@@ -9,7 +9,7 @@ if(temp && !chao){//Acabei de tocar no chão
 		//Criando poeira
 		for(var i = 0; i < irandom_range(4, 10); i++){
 			var xx = random_range(x - sprite_width, x + sprite_width / 2);
-			instance_create_depth(xx, y, depth - 1000, obj_vel);
+			instance_create_layer(xx, y, "Particulas", obj_vel);
 		}
 }
 
