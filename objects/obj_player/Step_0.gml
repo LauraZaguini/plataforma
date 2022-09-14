@@ -15,6 +15,11 @@ if(chao){
 	}
 }
 if(parede_dir || parede_esq){
+	if(parede_dir) {
+		ultima_parede = 0;
+	} else {
+		ultima_parede = 1;	
+	}
 	timer_parede = limite_parede;	
 }else {
 	if(timer_parede > 0) timer_parede--;
@@ -83,31 +88,85 @@ switch(estado){
 		break;	
 	}
 	case state.movendo:{
+		//Abaixando
+		if(chao && down){
+			xscale = 1.5;
+			yscale = .5;
+		}
+		if(down){
+			xscale = 1.5;
+			yscale = .5;
+			velv += max_velv / 8;
+		}
+		
 		//Dando velocidade
 		//velh = (right - left) * max_velh;
 		velh = lerp(velh, avanco_h, acel);
 		
+		//Fazendo poeira
+		if(abs(velh) > max_velh - .5 && chao){
+			var chance = random(100);
+			if(chance > 90){ 
+				//Criando poeira
+				for(var i = 0; i < irandom_range(4, 10); i++){
+					var xx = random_range(x - sprite_width / 2, x + sprite_width / 2);
+					instance_create_depth(xx, y, depth - 1000, obj_vel);
+				}
+			}
+		}
+		
 		//Aplicando gravidade e parede
-		if(!chao && (parede_dir || parede_esq)){
+		if(!chao && (parede_dir || parede_esq || timer_parede)){
 			//Não estou no chão, mas estou tocando na parede
 			if(velv > 0){//Estou na parede e estou caindo
 				velv = lerp(velv, deslize, acel);
+				//Criando a poeira
+				var chance = random(100);
+				if(chance > 90){ 
+					//Criando poeira
+					for(var i = 0; i < irandom_range(4, 10); i++){
+						var	onde = parede_dir - parede_esq;
+						var xx = x + onde * sprite_width / 2;
+						var yy = y + random_range(- sprite_height, 0);
+						instance_create_depth(xx, yy, depth - 1000, obj_vel);
+					}
+				}
 			}else {
 				//Estou subindo
 				velv += grav;
 			}
 			
 			//Pulando pelas paredes
-			if(parede_dir && jump){
+			if(!ultima_parede && jump){
 				velv  = -max_velv;
 				velh = -max_velh;
 				xscale = .5;
 				yscale = 1.5;
-			}else if(parede_esq && jump){
+				//Criando a poeira
+				var chance = random(100);
+				if(chance > 90){ 
+					//Criando poeira
+					for(var i = 0; i < irandom_range(4, 10); i++){
+						var xx = x + sprite_width / 2;
+						var yy = y + random_range(- sprite_height, 0);
+						instance_create_depth(xx, yy, depth - 1000, obj_vel);
+					}
+				}
+			}else if(ultima_parede && jump){
 				velv = -max_velv;
 				velh = max_velh;
 				xscale = .5;
 				yscale = 1.5;
+				//Criando a poeira
+				var chance = random(100);
+				if(chance > 90){ 
+					//Criando poeira
+					for(var i = 0; i < irandom_range(4, 10); i++){
+						var xx = x - sprite_width / 2;
+						var yy = y + random_range(- sprite_height, 0);
+						instance_create_depth(xx, yy, depth - 1000, obj_vel);
+					}
+				}
 			}
 		}else if(!chao) {
 			velv += grav;	
@@ -119,7 +178,12 @@ switch(estado){
 			velv = -max_velv;	
 			//Alterando a escala
 			xscale = .5;
-			yscale = 1.5;	
+			yscale = 1.5;
+			//Criando poeira
+			for(var i = 0; i < irandom_range(4, 10); i++){
+				var xx = random_range(x - sprite_width, x + sprite_width / 2);
+				instance_create_depth(xx, y, depth - 1000, obj_vel);
+			}
 		}
 		
 		//Buffer do pulo
@@ -165,7 +229,7 @@ switch(estado){
 	case state.dash:{
 		dura--;
 		
-		carga = 0;
+		//carga = 0;
 		
 		velh = lengthdir_x(len, dir);
 		velv = lengthdir_y(len, dir);
@@ -195,6 +259,10 @@ switch(estado){
 		}
 		
 		break;
+	}
+	case state.morte:{
+		room_restart();
+		break;	
 	}
 }
 

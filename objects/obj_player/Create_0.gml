@@ -34,6 +34,8 @@ yscale				= 1;
 dura					= room_speed / 4;
 dir						= 0;
 carga					= 1;
+ultima_parede = 0;
+ver						= 1;
 
 //Controlando cor
 sat						= 255;
@@ -42,7 +44,8 @@ sat						= 255;
 enum state{
 	parado,
 	movendo,
-	dash
+	dash,
+	morte
 }
 
 estado				= state.parado;
