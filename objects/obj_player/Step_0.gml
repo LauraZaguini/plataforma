@@ -215,7 +215,11 @@ switch(estado){
 		//Dash
 		if(dash && carga > 0){
 			//Decidindo a direção
-			dir = point_direction(0, 0, (right - left), (down - up));
+			if(right || up || left || down){
+				dir = point_direction(0, 0, (right - left), (down - up));
+			}else {
+				dir = point_direction(0, 0, ver, 0);
+			}
 			estado = state.dash;
 			carga = 0;
 		}
