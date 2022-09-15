@@ -4,6 +4,7 @@
   "name": "Plataformaa",
   "resources": [
     {"id":{"name":"spr_dica","path":"sprites/spr_dica/spr_dica.yy",},"order":5,},
+    {"id":{"name":"rm_level2","path":"rooms/rm_level2/rm_level2.yy",},"order":1,},
     {"id":{"name":"spr_plat_cima","path":"sprites/spr_plat_cima/spr_plat_cima.yy",},"order":3,},
     {"id":{"name":"rm_level1","path":"rooms/rm_level1/rm_level1.yy",},"order":0,},
     {"id":{"name":"obj_bonus","path":"objects/obj_bonus/obj_bonus.yy",},"order":0,},
@@ -19,7 +20,10 @@
     {"id":{"name":"obj_serra","path":"objects/obj_serra/obj_serra.yy",},"order":0,},
     {"id":{"name":"obj_plat_cima","path":"objects/obj_plat_cima/obj_plat_cima.yy",},"order":2,},
     {"id":{"name":"spr_vel","path":"sprites/spr_vel/spr_vel.yy",},"order":3,},
+    {"id":{"name":"snd_teste","path":"sounds/snd_teste/snd_teste.yy",},"order":2,},
     {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},"order":0,},
+    {"id":{"name":"obj_pedaco","path":"objects/obj_pedaco/obj_pedaco.yy",},"order":6,},
+    {"id":{"name":"spr_pedacos","path":"sprites/spr_pedacos/spr_pedacos.yy",},"order":4,},
     {"id":{"name":"obj_part","path":"objects/obj_part/obj_part.yy",},"order":5,},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},"order":5,},
     {"id":{"name":"spr_morte","path":"sprites/spr_morte/spr_morte.yy",},"order":1,},
@@ -52,6 +56,7 @@
   "RoomOrderNodes": [
     {"roomId":{"name":"rm_tutorial","path":"rooms/rm_tutorial/rm_tutorial.yy",},},
     {"roomId":{"name":"rm_level1","path":"rooms/rm_level1/rm_level1.yy",},},
+    {"roomId":{"name":"rm_level2","path":"rooms/rm_level2/rm_level2.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Curves","folderPath":"folders/Animation Curves.yy","order":12,},

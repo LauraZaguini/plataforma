@@ -7,10 +7,6 @@ acel_ar				= .07;
 acel					= acel_chao;
 deslize				= 2;
 
-//Aceleração
-velv					= 0;
-velh					= 0;
-
 //Limites da velocidade
 max_velh			= 6;
 max_velv			= 9;
@@ -36,6 +32,8 @@ dir						= 0;
 carga					= 1;
 ultima_parede = 0;
 ver						= 1;
+criar_pedaco	= true;
+iniciado				= true;
 
 //Controlando cor
 sat						= 255;
@@ -53,4 +51,6 @@ enum state{
 	morte
 }
 
-estado				= state.parado;
+estado				= state.movendo;
+
+lista					= noone;

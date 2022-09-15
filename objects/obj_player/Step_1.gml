@@ -1,5 +1,11 @@
 /// @description 
 
+if(iniciado){
+	velh = velh_inicial;
+	velv = velv_inicial;
+	iniciado = false;
+}
+
 //Checando se acabei de cair no chão
 var temp = place_meeting(x, y + 1, obj_plat);
 if(temp && !chao){//Acabei de tocar no chão

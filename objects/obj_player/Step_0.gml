@@ -265,7 +265,28 @@ switch(estado){
 		break;
 	}
 	case state.morte:{
-		room_restart();
+		//Explodindo o player
+		if(criar_pedaco){
+			for(var i = 0; i < 10; i++){
+				var p = instance_create_layer(x, y, layer, obj_pedaco);
+				p.speed = random_range(2, 4);
+				p.direction = random(360);
+				p.image_xscale = random_range(.2, .6);
+				p.image_yscale = p.image_xscale;
+				p.dest_x = xstart;
+				p.dest_y = ystart;
+				p.velh_inicial = velh_inicial;
+				p.velv_inicial = velv_inicial;
+				lista[i] = p.id;
+				if(i >= 9){
+					criar_pedaco = false;
+					p.criadora = true;
+					p.lista = lista;
+					obj_camera.alvo = p;
+					instance_destroy();
+				}
+			}
+		}
 		break;	
 	}
 }
